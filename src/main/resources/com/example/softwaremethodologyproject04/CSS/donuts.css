@@ -1,0 +1,27 @@
+.button{
+    -fx-background-color: #ffd6ff;
+    -fx-border-color: #111;
+}
+.button:hover{
+    -fx-background-color: #c8b6ff;
+
+}
+.circleButton{
+    -fx-background-color: #fff;
+    -fx-background-radius: 5em;
+    -fx-margin: 5px 5px;
+    -fx-background-color: #ffd6ff;
+    -fx-border-color: none;
+}
+.comboBox{
+       -fx-background-color: #ffd6ff;
+        -fx-border-color: #111;
+}
+.comboBox:hover{
+    -fx-background-color: #c8b6ff;
+}
+.listView{
+    -fx-border-color: black;
+}.listView:even{
+    -fx-background-color: #c8b6ff;
+}

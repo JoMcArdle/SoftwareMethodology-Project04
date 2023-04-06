@@ -1,0 +1,11 @@
+.borderPane{
+    -fx-background-color:  #ffe5ec;
+}
+.button{
+    -fx-background-color: #ffd6ff;
+    -fx-border-color: #111;
+}
+.button:hover{
+    -fx-background-color: #c8b6ff;
+
+}

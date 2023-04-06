@@ -1,0 +1,16 @@
+.button{
+    -fx-background-color:  #d5bdaf;
+    -fx-border-color: #7f5539;
+}
+.button:hover{
+        -fx-background-color:  #9c6644;
+}
+
+.circleButton{
+    -fx-background-radius: 5em;
+    -fx-border-color: none;
+}
+.coffeeComboBox{
+       -fx-background-color:  #d5bdaf;
+        -fx-border-color: #7f5539;
+}
