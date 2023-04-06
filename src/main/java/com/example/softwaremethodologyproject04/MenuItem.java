@@ -51,5 +51,4 @@ public abstract class MenuItem {
      */
     public abstract String displayInfo();
 
-
 }

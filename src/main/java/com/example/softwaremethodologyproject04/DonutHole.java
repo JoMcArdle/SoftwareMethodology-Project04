@@ -91,6 +91,9 @@ public class DonutHole extends MenuItem{
      */
     @Override
     public String toString() {
-        return "$" + df.format(itemPrice());
+        return this.flavor + " " + this.quantity ;
+    }
+    public double getDonutHolePrice(){
+        return this.DONUT_HOLE_PRICE;
     }
 }

@@ -261,13 +261,19 @@ public class CoffeeController implements Initializable {
         int qty = Integer.parseInt(coffeeQuantityLabel.getText());
         if(coffeeComboBox.getSelectionModel().getSelectedItem().equals("Short") && qty>0){
             subtotal = (shortCoffee+  addsIn.size()*addInsPrice)*qty;
-        }if(coffeeComboBox.getSelectionModel().getSelectedItem().equals("Tall") && qty>0){
+        }else if(coffeeComboBox.getSelectionModel().getSelectedItem().equals("Tall") && qty>0){
             subtotal = (tallCoffee+ addsIn.size()*addInsPrice)*qty;
-        }if(coffeeComboBox.getSelectionModel().getSelectedItem().equals("Grande") && qty>0){
+        }else if(coffeeComboBox.getSelectionModel().getSelectedItem().equals("Grande") && qty>0){
             subtotal = (grandeCoffee +addsIn.size()*addInsPrice)*qty;
 
-        }if(coffeeComboBox.getSelectionModel().getSelectedItem().equals("Venti") && qty>0){
+        }else if(coffeeComboBox.getSelectionModel().getSelectedItem().equals("Venti") && qty>0){
             subtotal = (ventiCoffee + addsIn.size()*addInsPrice)*qty;
+        }else if(coffeeComboBox.getSelectionModel().getSelectedItem().equals("Select size")){
+            subtotal = 0;
+            unselectCheckBox();
+        }else{
+            subtotal = 0;
+            unselectCheckBox();
         }
         DecimalFormat df = new DecimalFormat("0.00");
         subtotal = Double.parseDouble(df.format(subtotal));
@@ -282,6 +288,5 @@ public class CoffeeController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
 
 }

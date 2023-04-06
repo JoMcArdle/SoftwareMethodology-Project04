@@ -91,7 +91,11 @@ public class CakeDonut extends MenuItem{
      */
     @Override
     public String toString() {
-        return "$" + df.format(itemPrice());
+
+        return this.flavor + " " + this.quantity;
+    }
+    public  double getCakePrice(){
+        return this.CAKE_PRICE;
     }
 
 }
