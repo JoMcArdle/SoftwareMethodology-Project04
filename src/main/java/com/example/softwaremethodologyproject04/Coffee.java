@@ -146,7 +146,7 @@ public class Coffee extends MenuItem{
         if(addIns == null || addIns.size() == 0){
             s = "Coffee " + + this.getQuantity() + " " + this.getCupSize();
         }else{
-            s = "Coffee " + this.getQuantity() + " " + this.getCupSize() + " " + addIns;
+            s = "Coffee " + this.getQuantity() + " " + this.getCupSize() + " " + this.addIns;
         }
         return s;
     }
