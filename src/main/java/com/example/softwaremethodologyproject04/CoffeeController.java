@@ -21,6 +21,7 @@ import java.util.ResourceBundle;
 import java.util.Set;
 
 public class CoffeeController implements Initializable {
+    private double subtotal =0;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -108,116 +109,145 @@ public class CoffeeController implements Initializable {
 
     }
     void resetTotal(){
-        coffeePriceTextField.setText("$0.00");
+        coffeePriceTextField.setText("0.00");
+    }
+    @FXML
+    void removeAll(){
+        if(!addsIn.isEmpty()){
+            addsIn.removeAll(addsIn);
+        }
     }
 
     @FXML
     void coffeeComboBoxAction(ActionEvent event){
         coffeeQuantityLabel.setText("0");
         if(coffeeComboBox.getSelectionModel().getSelectedItem().equals("Short")){
+            removeAll();
             resetTotal();
             size = "Short";
             hideDecrementButton();
             unselectCheckBox();
         }else if(coffeeComboBox.getSelectionModel().getSelectedItem().equals("Tall")){
+            removeAll();
             resetTotal();
             size = "Tall";
             hideDecrementButton();
             unselectCheckBox();
         }else if(coffeeComboBox.getSelectionModel().getSelectedItem().equals("Grande")){
+            removeAll();
             resetTotal();
             size = "Grande";
             hideDecrementButton();
             unselectCheckBox();
         }else if(coffeeComboBox.getSelectionModel().getSelectedItem().equals("Venti")){
+            removeAll();
             resetTotal();
             size = "Venti";
             hideDecrementButton();
             unselectCheckBox();
         }else if(coffeeComboBox.getSelectionModel().getSelectedItem().equals("Select size")){
+            removeAll();
+            resetTotal();
             hideDecrementButton();
             unselectCheckBox();
-            resetTotal();
         }
+    }
+    @FXML
+    void checkBoxes(ActionEvent event){
+        sweetSelected();
+        mochaSelected();
+        frenchSelected();
+        caramelSelected();
+        irishSelected();
+
     }
     @FXML
     void setTextFieldPrice(){
         coffeePriceTextField.setText("$" + Double.toString(temporaryPrice()));
     }
-
     @FXML
-     int numAddsIn(){
-        if(sweetCream.isSelected()){
-            addsIn.add(sweetCream.getText());
-            setTextFieldPrice();
-        }else if (!sweetCream.isSelected()){
-            if(addsIn.contains(sweetCream.getText())){
-                addsIn.remove(sweetCream.getText());
-            }
-            setTextFieldPrice();
-        }
-
-        if (mocha.isSelected()) {
-            addsIn.add(mocha.getText());
-            setTextFieldPrice();
-        } else{
-            if(addsIn.contains(mocha.getText())){
-                addsIn.remove(mocha.getText());
-            }
-            setTextFieldPrice();
-        }
-
-        if(frenchVanilla.isSelected()){
-            addsIn.add(frenchVanilla.getText());
-            setTextFieldPrice();
-
-        }else{
-            if(addsIn.contains(frenchVanilla.getText())){
-                addsIn.remove(frenchVanilla.getText());
-            }
-            setTextFieldPrice();
-        }
-
-        if(caramel.isSelected()){
-            addsIn.add(caramel.getText());
+    void sweetSelected(){
+        if(sweetCream.isSelected()) {
+            addsIn.add(sweetCream.getText().toString());
             setTextFieldPrice();
         }else{
-            if(addsIn.contains(caramel.getText())){
-                addsIn.remove(caramel.getText());
-            }
-            setTextFieldPrice();
+            if(addsIn.contains(sweetCream.getText().toString())) {
+                addsIn.remove(sweetCream.getText().toString());
+                setTextFieldPrice();
+         }
         }
-
-        if(irishCream.isSelected()){
-            addsIn.add(irishCream.getText());
-            setTextFieldPrice();
-        }else{
-            if(addsIn.contains(irishCream.getText())){
-                addsIn.remove(irishCream.getText());
-            }
-            setTextFieldPrice();
-        }
-        return addsIn.size();
     }
+    @FXML
+    void mochaSelected(){
+        if(mocha.isSelected()) {
+            addsIn.add(mocha.getText().toString());
+            setTextFieldPrice();
+        }else if(!mocha.isSelected()){
+            if(addsIn.contains(mocha.getText().toString())) {
+                addsIn.remove(mocha.getText().toString());
+                setTextFieldPrice();
+            }
+        }
+    }@FXML
+    void frenchSelected(){
+        if(frenchVanilla.isSelected()){
+            addsIn.add(frenchVanilla.getText().toString());
+            setTextFieldPrice();
+        }else if(!frenchVanilla.isSelected()){
+            if(addsIn.contains(frenchVanilla.getText().toString())){
+                addsIn.remove(frenchVanilla.getText().toString());
+                setTextFieldPrice();
+            }
+        }
+    }
+    @FXML
+    void caramelSelected(){
+        if(caramel.isSelected()){
+            addsIn.add(caramel.getText().toString());
+            setTextFieldPrice();
+        }else if(!caramel.isSelected()){
+            if(addsIn.contains(caramel.getText().toString())){
+                addsIn.remove(caramel.getText().toString());
+                setTextFieldPrice();
+            }
+        }
+    }
+    @FXML
+    void irishSelected(){
+        if(irishCream.isSelected()){
+            addsIn.add(irishCream.getText().toString());
+            setTextFieldPrice();
+        }else if(!irishCream.isSelected()){
+            if(!irishCream.isSelected()){
+                addsIn.remove(irishCream.getText().toString());
+                setTextFieldPrice();
+            }
+        }
+    }
+
     @FXML
     void coffeeAddToOrder(ActionEvent event){
         int qty =Integer.parseInt(coffeeQuantityLabel.getText());
         if(qty>0 && !(coffeeComboBox.getSelectionModel().getSelectedItem().equals("Select size"))) {
             Coffee coffee = new Coffee();
             coffee.setQuantity(qty);
-            coffee.setNumAddIns(this.numAddsIn());
+            coffee.setNumAddIns(addsIn.size());
             coffee.setCupSize(coffeeComboBox.getSelectionModel().getSelectedItem());
             for(String element: addsIn){
                 coffee.addToList(element);
             }
-            System.out.println(coffee +  " " + temporaryPrice());
+            System.out.println(coffee +  " " + temporaryPrice() + " " + addsIn.size());
             coffeeQuantityLabel.setText("0");
-            hideDecrementButton();
-            unselectCheckBox();
-            resetTotal();
+
         }
+        hideDecrementButton();
+        unselectCheckBox();
+        resetTotal();
+        removeAll();
 
     }
+
+
     @FXML
     void unselectCheckBox(){
         sweetCream.setSelected(false);
@@ -229,25 +259,20 @@ public class CoffeeController implements Initializable {
     @FXML
     double temporaryPrice(){
         int qty = Integer.parseInt(coffeeQuantityLabel.getText());
-        double subtotal= 0.00;
         if(coffeeComboBox.getSelectionModel().getSelectedItem().equals("Short") && qty>0){
-            subtotal = shortCoffee*qty + numAddsIn()*addInsPrice;
+            subtotal = (shortCoffee+  addsIn.size()*addInsPrice)*qty;
         }if(coffeeComboBox.getSelectionModel().getSelectedItem().equals("Tall") && qty>0){
-            subtotal = tallCoffee*qty + numAddsIn()*addInsPrice;
+            subtotal = (tallCoffee+ addsIn.size()*addInsPrice)*qty;
         }if(coffeeComboBox.getSelectionModel().getSelectedItem().equals("Grande") && qty>0){
-            subtotal = grandeCoffee*qty + numAddsIn()*addInsPrice;
+            subtotal = (grandeCoffee +addsIn.size()*addInsPrice)*qty;
 
         }if(coffeeComboBox.getSelectionModel().getSelectedItem().equals("Venti") && qty>0){
-            subtotal = ventiCoffee*qty + numAddsIn()*addInsPrice;
+            subtotal = (ventiCoffee + addsIn.size()*addInsPrice)*qty;
         }
         DecimalFormat df = new DecimalFormat("0.00");
         subtotal = Double.parseDouble(df.format(subtotal));
-
         return subtotal;
-
     }
-
-
 
     @FXML void backToMain(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("VIEW/main-view.fxml"));

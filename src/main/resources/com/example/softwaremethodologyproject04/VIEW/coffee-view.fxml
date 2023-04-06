@@ -58,24 +58,24 @@
           <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <CheckBox fx:id="sweetCream" mnemonicParsing="false" text="Sweet Cream">
+            <CheckBox fx:id="sweetCream" mnemonicParsing="false" onAction="#checkBoxes" text="Sweet Cream">
                <GridPane.margin>
                   <Insets left="40.0" />
                </GridPane.margin></CheckBox>
-            <CheckBox fx:id="mocha" mnemonicParsing="false" text="Mocha" GridPane.columnIndex="1">
+            <CheckBox fx:id="mocha" mnemonicParsing="false" onAction="#checkBoxes" text="Mocha" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin></CheckBox>
             <ComboBox fx:id="coffeeComboBox" onAction="#coffeeComboBoxAction" prefWidth="150.0" styleClass="coffeeComboBox" GridPane.columnIndex="2" />
-            <CheckBox fx:id="frenchVanilla" mnemonicParsing="false" text="French Vanilla" GridPane.rowIndex="1">
+            <CheckBox fx:id="frenchVanilla" mnemonicParsing="false" onAction="#checkBoxes" text="French Vanilla" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="40.0" />
                </GridPane.margin></CheckBox>
-            <CheckBox fx:id="caramel" mnemonicParsing="false" text="Caramel" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <CheckBox fx:id="caramel" mnemonicParsing="false" onAction="#checkBoxes" text="Caramel" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin></CheckBox>
-            <CheckBox fx:id="irishCream" mnemonicParsing="false" text="Irish Cream" GridPane.rowIndex="2">
+            <CheckBox fx:id="irishCream" mnemonicParsing="false" onAction="#checkBoxes" text="Irish Cream" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="40.0" />
                </GridPane.margin></CheckBox>
