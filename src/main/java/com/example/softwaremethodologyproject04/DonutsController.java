@@ -289,6 +289,13 @@ public class DonutsController implements Initializable {
             myDonutsList.clear();
             donutsOrderListView.setItems(myDonutsList);
     }
+    @FXML void displayConfirmation(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Successful");
+        alert.setContentText("Added to the order");
+        alert.showAndWait();
+    }
 
     @FXML
     void addToOrder(ActionEvent event) {
@@ -305,14 +312,12 @@ public class DonutsController implements Initializable {
                     yeastDonuts.setQuantity(quantity);
                     yeastDonuts.setPrice(yeastDonuts.getPrice());
                     mainController.orderBasket.add(yeastDonuts);
-                    System.out.println(mainController.orderBasket.toString(yeastDonuts));
                 } else if (donutsComboBox.getSelectionModel().getSelectedItem().equals("Cake Donut")) {
                     cakeDonut = new CakeDonut();
                     cakeDonut.setFlavor(donutType);
                     cakeDonut.setQuantity(quantity);
                     cakeDonut.setPrice(cakeDonut.getCakePrice());
                     mainController.orderBasket.add(cakeDonut);
-                    System.out.println(mainController.orderBasket.toString(cakeDonut));
 
 
                 } else if (donutsComboBox.getSelectionModel().getSelectedItem().equals("Donut Hole")) {
@@ -321,7 +326,6 @@ public class DonutsController implements Initializable {
                     donutHole.setQuantity(quantity);
                     donutHole.setPrice(donutHole.getDonutHolePrice());
                     mainController.orderBasket.add(donutHole);
-                    System.out.println(mainController.orderBasket.toString(donutHole));
                 }
 
             } else if (arr.length == 3) {
@@ -333,14 +337,12 @@ public class DonutsController implements Initializable {
                     yeastDonuts.setQuantity(quantity);
                     yeastDonuts.setPrice(yeastDonuts.getPrice());
                     mainController.orderBasket.add(yeastDonuts);
-                    System.out.println(mainController.orderBasket.toString(yeastDonuts));
                 } else if (donutsComboBox.getSelectionModel().getSelectedItem().equals("Cake Donut")) {
                     cakeDonut = new CakeDonut();
                     cakeDonut.setFlavor(donutType);
                     cakeDonut.setQuantity(quantity);
                     cakeDonut.setPrice(cakeDonut.getCakePrice());
                     mainController.orderBasket.add(cakeDonut);
-                    System.out.println(mainController.orderBasket.toString(cakeDonut));
 
                 } else if (donutsComboBox.getSelectionModel().getSelectedItem().equals("Donut Hole")) {
                     donutHole = new DonutHole();
@@ -348,13 +350,14 @@ public class DonutsController implements Initializable {
                     donutHole.setQuantity(quantity);
                     donutHole.setPrice(donutHole.getDonutHolePrice());
                     mainController.orderBasket.add(donutHole);
-                    System.out.println(mainController.orderBasket.toString(donutHole));
                 }
 
             }
         }
+        donutsSubTotal.setText("$0.00");
         donutsQuantityLabel.setText("0");
         removeList();
+        displayConfirmation();
     }
 
     @FXML

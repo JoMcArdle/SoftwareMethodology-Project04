@@ -240,15 +240,25 @@ public class CoffeeController implements Initializable {
             for(String element: addsIn){
                 coffee.addToList(element);
             }
-            System.out.println(coffee +  " " + temporaryPrice() + " " + addsIn.size());
+            mainController.orderBasket.add(coffee);
+            System.out.println(mainController.orderBasket);
             coffeeQuantityLabel.setText("0");
 
         }
+
         hideDecrementButton();
         unselectCheckBox();
         resetTotal();
         removeAll();
+        displayConfirmation();
 
+    }
+    @FXML void displayConfirmation(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Successful");
+        alert.setContentText("Added to the order");
+        alert.showAndWait();
     }
 
 
