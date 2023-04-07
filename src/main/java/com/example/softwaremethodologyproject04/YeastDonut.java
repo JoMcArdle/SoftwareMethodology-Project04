@@ -91,7 +91,10 @@ public class YeastDonut extends MenuItem{
      */
     @Override
     public String toString() {
-        return this.flavor + " (" + this.quantity + ")";
+        return this.flavor + " " + this.quantity;
 
+    }
+    public double getYeastPrice(){
+        return this.YEAST_PRICE;
     }
 }

@@ -3,7 +3,7 @@ package com.example.softwaremethodologyproject04;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 public class Order {
-
+    private static int count;
     private int orderNumber;
     private double subtotal = 0.0;
     private double total = 0.0;
@@ -17,7 +17,7 @@ public class Order {
      * Empty constructor.
      */
     public Order() {
-
+        this.orderNumber = ++Order.count;
     }
 
     /**
@@ -37,6 +37,7 @@ public class Order {
     }
 
     public String toString(Object obj) {
+        /*
         if (obj instanceof Coffee) {
             MenuItem coffee = (MenuItem) obj;
             return coffee.displayInfo();
@@ -53,6 +54,9 @@ public class Order {
             MenuItem donutHole = (MenuItem) obj;
             return donutHole.displayInfo();
         }
+
+         */
+        return "blablabla";
     }
 
     /**
@@ -70,10 +74,7 @@ public class Order {
      * @param item, the item to be added to the list.
      */
     public void add(MenuItem item) {
-
         itemsList.add(item);
-        orderNumber++;
-
     }
 
     /**
@@ -103,5 +104,11 @@ public class Order {
         return orders;
     }
 
+    public static void main(String[] args){
+        Order order1 = new Order();
+        System.out.println(order1.orderNumber);
+        Order order2 = new Order();
+        System.out.println(order2.orderNumber);
+    }
 
 }
