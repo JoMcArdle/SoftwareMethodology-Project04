@@ -32,6 +32,10 @@ public class CoffeeController implements Initializable {
     private double addInsPrice = 0.30;
     private int count =0;
     private Set<String> addsIn= new HashSet<>();
+    private MainController mainController;
+    public void setMainController (MainController controller){
+        mainController = controller;
+    }
 
     @FXML
     private CheckBox sweetCream;

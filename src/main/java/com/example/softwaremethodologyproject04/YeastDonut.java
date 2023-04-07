@@ -50,7 +50,6 @@ public class YeastDonut extends MenuItem{
      * @return quantity, the amount of donuts.
      */
     public int getQuantity() {
-
         return this.quantity;
     }
 

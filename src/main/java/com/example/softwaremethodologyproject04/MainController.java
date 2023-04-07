@@ -7,10 +7,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -59,18 +61,6 @@ public class MainController implements Initializable {
         donutsController = controller;
     }
 
-    /*
-
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("VIEW/donuts-view.fxml"));
-
-    DonutsController donutsController = loader.getController();
-
-    private void method(){
-        donutsController.setMainController(this);
-    }
-     */
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -86,46 +76,90 @@ public class MainController implements Initializable {
 
     }
     @FXML
-    private void orderDonuts(ActionEvent event) throws IOException {
-        //FXMLLoader loader = new FXMLLoader(getClass().getResource("donuts-view.fxml"));
-        root = FXMLLoader.load(getClass().getResource("VIEW/donuts-view.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root, 600, 700);
-        stage.setScene(scene);
-        scene.getStylesheets().add(getClass().getResource("CSS/donuts.css").toExternalForm());
-        stage.show();
-
+    protected void orderDonuts(ActionEvent event) throws IOException {
+        stage = new Stage();
+        BorderPane root;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("VIEW/donuts-view.fxml"));
+            root = (BorderPane)loader.load();
+            scene = new Scene(root, 600, 700);
+            stage.setScene(scene);
+            scene.getStylesheets().add(getClass().getResource("CSS/donuts.css").toExternalForm());
+            stage.show();
+            DonutsController donutsController = loader.getController();
+            donutsController.setMainController(this);
+        }catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Loading View1.fxml.");
+            alert.setContentText("Couldn't load View1.fxml.");
+            alert.showAndWait();
+        }
     }
     @FXML
     private void orderCoffee(ActionEvent event) throws IOException {
-        //FXMLLoader loader = new FXMLLoader(getClass().getResource("coffee-view.fxml"));
-        root = FXMLLoader.load(getClass().getResource("VIEW/coffee-view.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root, 600, 700);
-        stage.setScene(scene);
-        scene.getStylesheets().add(getClass().getResource("CSS/coffee.css").toExternalForm());
-        stage.show();
+        stage = new Stage();
+        BorderPane root;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("VIEW/coffee-view.fxml"));
+            root = (BorderPane)loader.load();
+            scene = new Scene(root, 600, 700);
+            stage.setScene(scene);
+            scene.getStylesheets().add(getClass().getResource("CSS/coffee.css").toExternalForm());
+            stage.show();
+            CoffeeController coffeeController = loader.getController();
+            coffeeController.setMainController(this);
+        }catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Loading View1.fxml.");
+            alert.setContentText("Couldn't load View1.fxml.");
+            alert.showAndWait();
+        }
     }
     @FXML
     private void yourOrder(ActionEvent event) throws IOException {
         // FXMLLoader loader = new FXMLLoader(getClass().getResource("user-order-view.fxml"));
-        root = FXMLLoader.load(getClass().getResource("VIEW/user-order-view.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root, 600, 700);
-        stage.setScene(scene);
-        scene.getStylesheets().add(getClass().getResource("CSS/userOrder.css").toExternalForm());
-        stage.show();
+        stage = new Stage();
+        BorderPane root;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("VIEW/user-order-view.fxml"));
+            root = (BorderPane)loader.load();
+            scene = new Scene(root, 600, 700);
+            stage.setScene(scene);
+            scene.getStylesheets().add(getClass().getResource("CSS/userOrder.css").toExternalForm());
+            stage.show();
+            UserOrderController userOrderController = loader.getController();
+            userOrderController.setMainController(this);
+        }catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Loading View1.fxml.");
+            alert.setContentText("Couldn't load View1.fxml.");
+            alert.showAndWait();
+        }
 
     }
     @FXML
     private void storeOrder(ActionEvent event) throws IOException {
-        //FXMLLoader loader = new FXMLLoader(getClass().getResource("store-order-view.fxml"));
-        root = FXMLLoader.load(getClass().getResource("VIEW/store-order-view.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root, 600, 700);
-        stage.setScene(scene);
-        scene.getStylesheets().add(getClass().getResource("CSS/storeOrder.css").toExternalForm());
-        stage.show();
+        stage = new Stage();
+        BorderPane root;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("VIEW/store-order-view.fxml"));
+            root = (BorderPane)loader.load();
+            scene = new Scene(root, 600, 700);
+            stage.setScene(scene);
+            scene.getStylesheets().add(getClass().getResource("CSS/storeOrder.css").toExternalForm());
+            stage.show();
+            StoreOrderController storeOrderController = loader.getController();
+            storeOrderController.setMainController(this);
+        }catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Loading View1.fxml.");
+            alert.setContentText("Couldn't load View1.fxml.");
+            alert.showAndWait();
+        }
 
     }
     /*************************************     Helper Methods    *************************************/
@@ -172,6 +206,9 @@ public class MainController implements Initializable {
         bStoreOrder.setContentDisplay(ContentDisplay.TOP);
         bStoreOrder.setGraphic(storeOrderImageView);
 
+    }
+    public Order getList(){
+        return orderBasket;
     }
 }
 

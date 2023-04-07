@@ -25,6 +25,7 @@ public class Order {
      * @return subtotal, the price of items without tax.
      */
     public double getSubTotal() {
+
         return this.subtotal;
     }
 
@@ -37,26 +38,22 @@ public class Order {
     }
 
     public String toString(Object obj) {
-        /*
         if (obj instanceof Coffee) {
             MenuItem coffee = (MenuItem) obj;
-            return coffee.displayInfo();
+            return coffee.toString();
         }
         else if (obj instanceof YeastDonut) {
             MenuItem yeastDonut = (MenuItem) obj;
-            return yeastDonut.displayInfo();
+            return yeastDonut.toString();
         }
         else if (obj instanceof CakeDonut) {
             MenuItem cakeDonut = (MenuItem) obj;
-            return cakeDonut.displayInfo();
+            return cakeDonut.toString();
         }
         else {
             MenuItem donutHole = (MenuItem) obj;
-            return donutHole.displayInfo();
+            return donutHole.toString();
         }
-
-         */
-        return "blablabla";
     }
 
     /**
@@ -107,8 +104,6 @@ public class Order {
     public static void main(String[] args){
         Order order1 = new Order();
         System.out.println(order1.orderNumber);
-        Order order2 = new Order();
-        System.out.println(order2.orderNumber);
     }
 
 }
