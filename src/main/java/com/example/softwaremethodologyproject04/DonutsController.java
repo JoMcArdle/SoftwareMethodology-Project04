@@ -20,6 +20,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+
 public class DonutsController implements Initializable {
     private double yeastPrice = 1.59;
     private double cakePrice = 1.79;
@@ -63,22 +64,9 @@ public class DonutsController implements Initializable {
     private ListView<String> donutsListView;
     @FXML
     private ListView<String> donutsOrderListView;
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("main-view.fxml"));
-
-    MainController mainController = loader.getController();
-      /*
     private MainController mainController;
-
-    public void setMainController(MainController controller){
+    public void setMainController (MainController controller){
         mainController = controller;
-    }
-     */
-    public void method(){
-        mainController.setDonutsController(this);
-        for(MenuItem element: menuItems){
-            mainController.orderBasket.add(element);
-        }
-        System.out.println(mainController.orderBasket);
     }
 
 
@@ -296,6 +284,18 @@ public class DonutsController implements Initializable {
         donutsSubTotal.setText(stringSubTotal);
 
     }
+    @FXML
+    private void removeList(){
+            myDonutsList.clear();
+            donutsOrderListView.setItems(myDonutsList);
+    }
+    @FXML void displayConfirmation(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Successful");
+        alert.setContentText("Added to the order");
+        alert.showAndWait();
+    }
 
     @FXML
     void addToOrder(ActionEvent event) {
@@ -311,45 +311,55 @@ public class DonutsController implements Initializable {
                     yeastDonuts.setFlavor(donutType);
                     yeastDonuts.setQuantity(quantity);
                     yeastDonuts.setPrice(yeastDonuts.getPrice());
-                    menuItems.add(yeastDonuts);
+                    mainController.orderBasket.add(yeastDonuts);
                 } else if (donutsComboBox.getSelectionModel().getSelectedItem().equals("Cake Donut")) {
+                    cakeDonut = new CakeDonut();
                     cakeDonut.setFlavor(donutType);
                     cakeDonut.setQuantity(quantity);
                     cakeDonut.setPrice(cakeDonut.getCakePrice());
+                    mainController.orderBasket.add(cakeDonut);
+
 
                 } else if (donutsComboBox.getSelectionModel().getSelectedItem().equals("Donut Hole")) {
+                    donutHole = new DonutHole();
                     donutHole.setFlavor(donutType);
                     donutHole.setQuantity(quantity);
                     donutHole.setPrice(donutHole.getDonutHolePrice());
+                    mainController.orderBasket.add(donutHole);
                 }
 
             } else if (arr.length == 3) {
                 donutType = arr[0] + " " + arr[1];
                 quantity = Integer.parseInt(arr[2]);
                 if (donutsComboBox.getSelectionModel().getSelectedItem().equals("Yeast Donut")) {
+                    yeastDonuts = new YeastDonut();
                     yeastDonuts.setFlavor(donutType);
                     yeastDonuts.setQuantity(quantity);
                     yeastDonuts.setPrice(yeastDonuts.getPrice());
-                    menuItems.add(yeastDonuts);
+                    mainController.orderBasket.add(yeastDonuts);
                 } else if (donutsComboBox.getSelectionModel().getSelectedItem().equals("Cake Donut")) {
+                    cakeDonut = new CakeDonut();
                     cakeDonut.setFlavor(donutType);
                     cakeDonut.setQuantity(quantity);
                     cakeDonut.setPrice(cakeDonut.getCakePrice());
+                    mainController.orderBasket.add(cakeDonut);
 
                 } else if (donutsComboBox.getSelectionModel().getSelectedItem().equals("Donut Hole")) {
+                    donutHole = new DonutHole();
                     donutHole.setFlavor(donutType);
                     donutHole.setQuantity(quantity);
                     donutHole.setPrice(donutHole.getDonutHolePrice());
+                    mainController.orderBasket.add(donutHole);
                 }
 
             }
         }
+        donutsSubTotal.setText("$0.00");
         donutsQuantityLabel.setText("0");
-        method();;
+        removeList();
+        displayConfirmation();
     }
-    public MenuItem getItem(MenuItem item){
-        return item;
-    }
+
     @FXML
     void backToMain(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("VIEW/main-view.fxml"));
